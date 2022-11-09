@@ -369,11 +369,11 @@ questionsRouter.patch("/question-vote", async (req, res) => {
           ownerOfQuestion.userScore = ownerOfQuestion.userScore + 1;
         }
       }
-      const index = update.votes.findIndex((vote) => {
+      const index = update.questionInteraction.votes.findIndex((vote) => {
         return vote === voteDuplicate[0];
       });
-      update.votes.splice(index, 1);
-      update.votes.push({
+      update.questionInteraction.votes.splice(index, 1);
+      update.questionInteraction.votes.push({
         userId: userId,
         action: action,
       });
