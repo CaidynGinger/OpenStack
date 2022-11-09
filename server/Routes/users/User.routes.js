@@ -58,7 +58,7 @@ userRouter.post("/api/register", async (req, res) => {
 
   if (
     !(
-      allowedUserImages.filter((img) => {
+      imageNames.filter((img) => {
         return img === SelectedImg;
       }).length > 0
     )
@@ -368,7 +368,7 @@ userRouter.get("/user", async (req, res) => {
       title: "Admin",
       id: 0,
       location:
-        "https://drive.google.com/uc?export=view&id=1aftQbAO38Age6xOIy9GqB9hjuwKRol9K",
+        "http://localhost:5001/images/badges/AdminBadge.png",
       decs: "Be given the privilege of admin",
       achieved:
         user?.roles?.filter((role) => {
@@ -379,7 +379,7 @@ userRouter.get("/user", async (req, res) => {
       title: "Score",
       id: 1,
       location:
-        "https://drive.google.com/uc?export=view&id=1ivX2Mk5rLgE8BOgkbtTFbP7Y19hJsvGK",
+      "http://localhost:5001/images/badges/Score1.png",
       decs: "Get a score of 20",
       achieved: user?.userScore >= 20,
     },
@@ -387,7 +387,7 @@ userRouter.get("/user", async (req, res) => {
       title: "Score",
       id: 2,
       location:
-        "https://drive.google.com/uc?export=view&id=1q08fNmJexAs4xiZhn2wOJP0UF8uNYc6B",
+        "http://localhost:5001/images/badges/Score2.png",
       decs: "Get a score of 50",
       achieved: user?.userScore >= 50,
     },
@@ -395,7 +395,7 @@ userRouter.get("/user", async (req, res) => {
       title: "Score",
       id: 3,
       location:
-        "https://drive.google.com/uc?export=view&id=1ye4LYUHAJZDWpbvQJtiXlCmB9U9iQWUZ",
+      "http://localhost:5001/images/badges/Score3.png",
       decs: "Get a score of 100",
       achieved: user?.userScore >= 100,
     },
@@ -403,7 +403,7 @@ userRouter.get("/user", async (req, res) => {
       title: "Score",
       id: 4,
       location:
-        "https://drive.google.com/uc?export=view&id=1v04q-f6MiRM0rMIS-OZL4DhukfA2K4Pd",
+      "http://localhost:5001/images/badges/Score4.png",
       decs: "Get a score of 500",
       achieved: user?.userScore >= 500,
     },

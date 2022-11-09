@@ -32,7 +32,7 @@ export const UserHeaderIcon = (props) => {
 
       <img onClick={navigateUserSettingsHandler}
         className={styles.user_img}
-        src={"http://localhost:5001/images/" + userImg}
+        src={userImg}
       />
       <a onClick={props.onClick}>Logout</a>
     </div>
