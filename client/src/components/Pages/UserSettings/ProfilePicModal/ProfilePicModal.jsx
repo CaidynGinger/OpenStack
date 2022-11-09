@@ -38,7 +38,7 @@ export const ProfilePicModal = (props) => {
             <img
             className={props.selectedUserImage === img ? styles.selected : undefined}
               key={img}
-              src={"http://localhost:5001/images/" + img}
+              src={img}
               onClick={() => {
                 props.selectProfileImage(img);
               }}

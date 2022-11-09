@@ -247,7 +247,6 @@ const UserSettings = () => {
             <img
               className={styles.user_img}
               src={
-                "http://localhost:5001/images/" +
                 userData?.user?.profilePictureLink
               }
             />
