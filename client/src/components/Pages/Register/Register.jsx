@@ -114,14 +114,15 @@ const Register = () => {
     });
   };
 
+  const [SelectedImg, setSelectedImg] = useState(
+    "http://localhost:5001/images/profile1.png"
+  );
+
   const selectProfileImageHandler = (img) => {
+    console.log(img);
     setSelectedImg(img);
     openProfileSectionHandler();
   };
-
-  const [SelectedImg, setSelectedImg] = useState(
-    "1pQmvEXCKRcOVPZzrN3qLCcT4JxoyrxvG"
-  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -182,9 +183,7 @@ const Register = () => {
               <span>{Email}</span>
             </p>
             <div className={styles.after_links}>
-              <a href="https://mail.google.com/">
-                Go to your email
-              </a>
+              <a href="https://mail.google.com/">Go to your email</a>
             </div>
           </div>
         </section>
@@ -212,21 +211,14 @@ const Register = () => {
                   ></div>
                 )}
                 <h4>Select your profile image</h4>
-                <img
-                  onClick={openProfileSectionHandler}
-                  src={
-                    "https://drive.google.com/uc?export=view&id=" + SelectedImg
-                  }
-                />
+                <img onClick={openProfileSectionHandler} src={SelectedImg} />
                 {OpenProfileSelection && (
                   <div className={styles.profile_img_list}>
                     {ImageList.map((img) => {
                       return (
                         <img
                           key={img}
-                          src={
-                            "https://drive.google.com/uc?export=view&id=" + img
-                          }
+                          src={img}
                           onClick={() => {
                             selectProfileImageHandler(img);
                           }}

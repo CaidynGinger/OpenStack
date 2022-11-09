@@ -6,13 +6,15 @@ const cors = require("cors");
 require("dotenv/config");
 const bodyParser = require('body-parser');
 
+const allowedOrigins = require('./config/allowedOrigins')
+
 const credentials = require("./middleware/credentials");
 
 const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: allowedOrigins,
   })
 );
 
@@ -29,6 +31,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
+
+app.use(express.static('images'))
+app.use('/images', express.static('images'))
 
 // app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));

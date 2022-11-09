@@ -32,7 +32,7 @@ export const UserHeaderIcon = (props) => {
 
       <img onClick={navigateUserSettingsHandler}
         className={styles.user_img}
-        src={"https://drive.google.com/uc?export=view&id=" + userImg}
+        src={"http://localhost:5001/images/" + userImg}
       />
       <a onClick={props.onClick}>Logout</a>
     </div>

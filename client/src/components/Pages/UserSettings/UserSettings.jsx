@@ -247,7 +247,7 @@ const UserSettings = () => {
             <img
               className={styles.user_img}
               src={
-                "https://drive.google.com/uc?export=view&id=" +
+                "http://localhost:5001/images/" +
                 userData?.user?.profilePictureLink
               }
             />

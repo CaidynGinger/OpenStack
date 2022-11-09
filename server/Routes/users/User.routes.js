@@ -10,23 +10,14 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const emailService = require("./userAuthenticationEmail.service");
 
-const allowedUserImages = [
-  // "1QG1T8m5Dt57tVZ9eC7SBl7Ns9QlVuHjB",
-  // "1HtSZf8L9cMPimRpG1sMC4_DH6jfznKjy",
-  // "1fOdYMdeuh06uAheguTQOQGbkeqI7Lsmx",
-  // "1j16LY_lPXKY8yc4ULBPc6WXh3Z2864YE",
-  // "1dAQAD9DZijEiPfivZSDnoC-_C8Jn5iUg",
-  // "1LSeKoGFWmQt5XdlDGOQ-ZAQbeyMnP89q",
-  // "1-qWSvzB6nO8-OfAwVzbT2IbqhT0XV-HM",
-  // "1fkkLUoHgGA0mUvys2GDGDRqlkl5ywZRf",
-  // "1YtvDVIoebi5ijBeMR_BrXoU2asJIFWN2",
-  "1Pm_01uH03eAsBO3RbYNNw8EhupFtNZGb",
-  "1pQmvEXCKRcOVPZzrN3qLCcT4JxoyrxvG",
-  "1VU9N6NKcX9R4FYwwszxCX86_mC8cdgYh",
-  "15zGQhYBLNxE86DJw-Rb6He8kt9jTOScJ",
-  "1wV2BwHurrAWOJo3HJ3dX4e2dlI5qUFmA",
-  "1UYNBX1N9AeuOG58YsKJu777zmxfGhZn3",
-  "1UTzn9UWPgrRJXUMXIPejSQWtGjlScUJf",
+const imageNames = [
+  "profile1.png",
+  "profile2.png",
+  "profile3.png",
+  "profile4.png",
+  "profile5.png",
+  "profile6.png",
+  "profile7.png",
 ];
 
 userRouter.get("/all-users", async (req, res) => {
@@ -526,7 +517,10 @@ userRouter.get("/user", async (req, res) => {
 });
 
 userRouter.get("/get-images", async (req, res) => {
-  res.status(200).json(allowedUserImages);
+  const response = imageNames.map(image => {
+    return 'http://localhost:5001/images/'+image
+  })
+  res.status(200).json(response);
 });
 
 userRouter.patch("/user-profile", async (req, res) => {
