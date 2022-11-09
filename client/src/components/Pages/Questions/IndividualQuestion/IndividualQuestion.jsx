@@ -448,7 +448,7 @@ export default function IndividualQuestion() {
                   <div className={styles.user_card}>
                     <img
                       src={
-                        "https://drive.google.com/uc?export=view&id=" +
+                        "https://localhost:5001/images/" +
                         QuestionData?.userData?.profilePictureLink
                       }
                     />
