@@ -123,7 +123,7 @@ export const Answer = (props) => {
               <h6>Answered {moment(answer.created).format("lll")}</h6>
               <div className={styles.user_card}>
               <img src={
-                    "https://drive.google.com/uc?export=view&id=" + props.profilePictureLink
+                    props.profilePictureLink
                   } />
                 <div>
                   <p onClick={() => {navigate(`/questions/UserSettings/${answer.user.id}`)}}>{answer.user.username}</p>
