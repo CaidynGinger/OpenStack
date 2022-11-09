@@ -57,11 +57,9 @@ userRouter.post("/api/register", async (req, res) => {
   }
 
   if (
-    !(
-      imageNames.filter((img) => {
-        return img === SelectedImg;
-      }).length > 0
-    )
+    imageNames.filter((img) => {
+      return img === SelectedImg;
+    }).length > 0
   ) {
     return res.sendStatus(411); //Conflict
   }
@@ -98,7 +96,7 @@ userRouter.post("/api/create-user", async (req, res) => {
     function parseJwt(token) {
       return JSON.parse(Buffer.from(token.split(".")[1], "base64").toString());
     }
-    const userDetails = parseJwt(accountData)
+    const userDetails = parseJwt(accountData);
     // if user exists force exit
     const foundUser = await userSchema.find({ email: userDetails.Email });
 
@@ -115,7 +113,7 @@ userRouter.post("/api/create-user", async (req, res) => {
       res.status(200).json("account verified");
     }
   } catch (error) {
-    console.log('error');
+    console.log("error");
     res.sendStatus(402);
   }
 });
@@ -339,36 +337,34 @@ userRouter.get("/user", async (req, res) => {
       return i != null;
     }).length;
 
-    const findQuestions = (
-      await questionSchema.find().sort({ questionCreated: "desc" })
-    ).filter((question) => {
-      return !question.private;
-    });
+  const findQuestions = (
+    await questionSchema.find().sort({ questionCreated: "desc" })
+  ).filter((question) => {
+    return !question.private;
+  });
 
-    const questionVotes = findQuestions.map(question => {
-      return question.questionInteraction.votes
-    })
-    let userQuestionVotes = []
-    // console.log(questionVotes);
-    questionVotes.forEach(votes => {
-      votes.filter(vote => {
-        console.log(vote.userId);
-        console.log(userId);
-        if ( vote.userId === userId) {
-          userQuestionVotes.push(vote)
-        }
-        
-      })
-      // return votes
-    })
-    console.log(userQuestionVotes.length);
+  const questionVotes = findQuestions.map((question) => {
+    return question.questionInteraction.votes;
+  });
+  let userQuestionVotes = [];
+  // console.log(questionVotes);
+  questionVotes.forEach((votes) => {
+    votes.filter((vote) => {
+      console.log(vote.userId);
+      console.log(userId);
+      if (vote.userId === userId) {
+        userQuestionVotes.push(vote);
+      }
+    });
+    // return votes
+  });
+  console.log(userQuestionVotes.length);
 
   let achievements = [
     {
       title: "Admin",
       id: 0,
-      location:
-        "http://localhost:5001/images/badges/AdminBadge.png",
+      location: "http://localhost:5001/images/badges/AdminBadge.png",
       decs: "Be given the privilege of admin",
       achieved:
         user?.roles?.filter((role) => {
@@ -378,128 +374,112 @@ userRouter.get("/user", async (req, res) => {
     {
       title: "Score",
       id: 1,
-      location:
-      "http://localhost:5001/images/badges/Score1.png",
+      location: "http://localhost:5001/images/badges/Score1.png",
       decs: "Get a score of 20",
       achieved: user?.userScore >= 20,
     },
     {
       title: "Score",
       id: 2,
-      location:
-        "http://localhost:5001/images/badges/Score2.png",
+      location: "http://localhost:5001/images/badges/Score2.png",
       decs: "Get a score of 50",
       achieved: user?.userScore >= 50,
     },
     {
       title: "Score",
       id: 3,
-      location:
-      "http://localhost:5001/images/badges/Score3.png",
+      location: "http://localhost:5001/images/badges/Score3.png",
       decs: "Get a score of 100",
       achieved: user?.userScore >= 100,
     },
     {
       title: "Score",
       id: 4,
-      location:
-      "http://localhost:5001/images/badges/Score4.png",
+      location: "http://localhost:5001/images/badges/Score4.png",
       decs: "Get a score of 500",
       achieved: user?.userScore >= 500,
     },
     {
       title: "Ask",
       id: 5,
-      location:
-        "https://drive.google.com/uc?export=view&id=12fU8k7SZnroEYvj77VTG0mX5p_q_uFus",
+      location: "http://localhost:5001/images/badges/Ask 1.png",
       decs: "Ask your first question",
       achieved: userQuestions?.length >= 1,
     },
     {
       title: "Ask",
       id: 6,
-      location:
-        "https://drive.google.com/uc?export=view&id=1n0E-asNCvZ8NqVvlzBtWFY8ZXF-4aU9z",
+      location: "http://localhost:5001/images/badges/Ask 3.png",
       decs: "Ask 3 questions",
       achieved: userQuestions?.length >= 3,
     },
     {
       title: "Ask",
       id: 7,
-      location:
-        "https://drive.google.com/uc?export=view&id=1uUuLjOTtf73anwOLmu4JUHD74YC9U2VZ",
+      location: "http://localhost:5001/images/badges/Ask 10.png",
       decs: "Ask 10 questions",
       achieved: userQuestions?.length >= 10,
     },
     {
       title: "Ask",
       id: 8,
-      location:
-        "https://drive.google.com/uc?export=view&id=1lJubM-5AzyiPqxiI1GOagD2-W377dFmI",
+      location: "http://localhost:5001/images/badges/Ask 20.png",
       decs: "Ask 20 questions",
       achieved: userQuestions?.length >= 20,
     },
     {
       title: "Ask",
       id: 8,
-      location:
-        "https://drive.google.com/uc?export=view&id=1bzSXnwby0OQwHdZIkw3QqLpKIsaKUNJT",
+      location: "http://localhost:5001/images/badges/Ask 50.png",
       decs: "Ask 50 questions",
       achieved: userQuestions?.length >= 50,
     },
     {
       title: "Answers",
       id: 9,
-      location:
-        "https://drive.google.com/uc?export=view&id=1GEoIigGEd44RQsJPRlgBl3T3T1fY15rH",
+      location: "http://localhost:5001/images/badges/1 corect answer.png",
       decs: "Have one correct answer",
       achieved: usersCorrectAnswers >= 1,
     },
     {
       title: "Answers",
       id: 10,
-      location:
-        "https://drive.google.com/uc?export=view&id=1miy19rMBOGFAavAXvrgWAnF1MRcRjhgF",
+      location: "http://localhost:5001/images/badges/3 corect answer.png",
       decs: "Have 3 correct answers",
       achieved: usersCorrectAnswers >= 3,
     },
     {
       title: "Answers",
       id: 11,
-      location:
-        "https://drive.google.com/uc?export=view&id=1vFIM4k7yFcVhQsR6MUEDJQ2R-5sAjlCh",
+      location: "http://localhost:5001/images/badges/5 corect answer.png",
       decs: "Have 5 correct answers",
       achieved: usersCorrectAnswers >= 5,
     },
     {
       title: "Question votes",
       id: 12,
-      location:
-        "https://drive.google.com/uc?export=view&id=144T0WwMOsym8UxFFQY0-n33Fak49xuPp",
+      location: "http://localhost:5001/images/badges/Votes1.png",
       decs: "Vote on 5 questions",
       achieved: userQuestionVotes.length >= 5,
     },
     {
       title: "Question votes",
       id: 13,
-      location:
-        "https://drive.google.com/uc?export=view&id=1LOInQGHoekvsevJGcUIby1vmFZZAvX5Z",
+      location: "http://localhost:5001/images/badges/Votes2.png",
       decs: "Vote on 25 questions",
       achieved: userQuestionVotes.length >= 25,
     },
     {
       title: "Question votes",
       id: 14,
-      location:
-        "https://drive.google.com/uc?export=view&id=1Jq6AwC-IzWf5nyuEfTXUgIPsW3fodwbb",
+      location: "http://localhost:5001/images/badges/Votes3.png",
       decs: "Vote on 50 questions",
       achieved: userQuestionVotes.length >= 50,
     },
     {
       title: "Question votes",
       id: 15,
-      location:
-        "https://drive.google.com/uc?export=view&id=1J_NOsmf4WqV9sltTGl7rp4cnYDscz-t2",
+      location: "http://localhost:5001/images/badges/Votes4.png",
       decs: "Vote on 100 questions",
       achieved: userQuestionVotes.length >= 100,
     },
@@ -517,9 +497,9 @@ userRouter.get("/user", async (req, res) => {
 });
 
 userRouter.get("/get-images", async (req, res) => {
-  const response = imageNames.map(image => {
-    return 'http://localhost:5001/images/'+image
-  })
+  const response = imageNames.map((image) => {
+    return "http://localhost:5001/images/" + image;
+  });
   res.status(200).json(response);
 });
 

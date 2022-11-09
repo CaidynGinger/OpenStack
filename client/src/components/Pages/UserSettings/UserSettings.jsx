@@ -94,7 +94,7 @@ const UserSettings = () => {
   const userRef = useRef();
   const errRef = useRef();
 
-  const [user, setUser] = useState("CaidynGinger");
+  const [user, setUser] = useState("");
   const [validName, setValidName] = useState(true);
   const [userFocus, setUserFocus] = useState(false);
 
