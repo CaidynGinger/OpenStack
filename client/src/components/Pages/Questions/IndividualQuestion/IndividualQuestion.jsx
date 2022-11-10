@@ -448,7 +448,6 @@ export default function IndividualQuestion() {
                   <div className={styles.user_card}>
                     <img
                       src={
-                        "https://localhost:5001/images/" +
                         QuestionData?.userData?.profilePictureLink
                       }
                     />
